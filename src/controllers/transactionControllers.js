@@ -1,4 +1,4 @@
-import { initDB, sql } from "../config/db.js";
+import { sql } from "../config/db.js";
 
 export const getTransactionsByUserId = async (req, res) => {
 
