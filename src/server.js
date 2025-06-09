@@ -6,6 +6,7 @@ import { initDB } from "./config/db.js";
 import rateLimiter from "./middleware/rateLimiter.js";
 
 import transactionsRouter from "./routes/transactionRouter.js"
+import renderServerCronJob from "./config/cron.js";
 
 // run dotenv
 dotenv.config();
@@ -13,6 +14,11 @@ dotenv.config();
 const PORT = process.env.PORT || 8000;
 
 const app = express();
+
+// run cron job
+if (process.env.NODE_ENV === "production") {
+  renderServerCronJob.start();
+}
 
 // middleware
 app.use(rateLimiter);
